@@ -1,0 +1,88 @@
+﻿@{
+    ViewBag.Title = "Thống Kê Đơn Hàng";
+}
+
+<style>
+    .thong-ke-container {
+        max-width: 600px;
+        margin: auto;
+        padding: 20px;
+        background-color: #f7f7f7;
+        border-radius: 10px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, .1);
+    }
+
+        .thong-ke-container h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+    .thong-ke-form-group {
+        margin-bottom: 15px;
+    }
+
+        .thong-ke-form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #666;
+        }
+
+        .thong-ke-form-group input[type="text"] {
+            width: calc(100% - 22px);
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            line-height: 1.5;
+        }
+
+        .thong-ke-form-group input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            background-color: #5cb85c;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+            .thong-ke-form-group input[type="submit"]:hover {
+                background-color: #4cae4c;
+            }
+
+    .thong-ke-result h3 {
+        text-align: center;
+        color: #28a745;
+        margin-top: 20px;
+    }
+</style>
+
+<div class="thong-ke-container">
+    <h2>Thống Kê Đơn Hàng</h2>
+
+    @using (Html.BeginForm())
+    {
+        <div class="thong-ke-form-group">
+            <label>Ngày bắt đầu:</label>
+            @Html.TextBox("fromDate", ViewBag.StartDate as string, new { @class = "form-control" })
+        </div>
+
+        <div class="thong-ke-form-group">
+            <label>Ngày kết thúc:</label>
+            @Html.TextBox("toDate", ViewBag.EndDate as string, new { @class = "form-control" })
+        </div>
+
+        <div class="thong-ke-form-group">
+            <input type="submit" value="Thống kê" />
+        </div>
+    }
+
+    @if (ViewBag.TotalValue != null)
+    {
+        <div class="thong-ke-result">
+            <h3>Tổng giá trị đơn hàng: @ViewBag.TotalValue</h3>
+        </div>
+    }
+</div>
